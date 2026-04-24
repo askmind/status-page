@@ -7,7 +7,7 @@ Build a simple self-hosted web app for hobby use.
 - Next.js / React
 - TypeScript
 - Tailwind CSS
-- PostgreSQL or SQLite
+- PostgreSQL or SQLite when persistent storage is needed
 - Docker for deployment
 
 ## Rules

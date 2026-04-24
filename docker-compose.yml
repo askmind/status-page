@@ -1,0 +1,9 @@
+services:
+  dashboard:
+    build:
+      context: .
+    environment:
+      NEXT_PUBLIC_DASHBOARD_NAME: ${NEXT_PUBLIC_DASHBOARD_NAME:-Daily Dashboard}
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
