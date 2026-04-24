@@ -7,26 +7,13 @@ export type TransportDeparture = {
   status: string;
 };
 
-export type WeatherForecast = {
-  location: string;
-  current: {
-    temperatureC: number;
-    condition: string;
-    feelsLikeC: number;
-    windKph: number;
-    precipitationChance: number;
-  };
-  hourly: Array<{
-    time: string;
-    temperatureC: number;
-    condition: string;
-  }>;
-};
-
 export type CalendarEvent = {
   id: string;
   title: string;
-  startTime: string;
-  endTime: string;
-  location?: string;
+  start: string;
+  end: string;
+  allDay: boolean;
+  calendarId?: string;
+  calendarName?: string;
+  calendarColor?: string;
 };

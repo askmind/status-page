@@ -21,6 +21,7 @@ export default function ClockWidget() {
 
     return {
       time: new Intl.DateTimeFormat("en", {
+        hourCycle: "h23",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
@@ -35,18 +36,13 @@ export default function ClockWidget() {
   }, [now]);
 
   return (
-    <div className="rounded-lg border border-white/10 bg-emerald-950/50 p-6 shadow-2xl shadow-black/25 sm:p-8">
-      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-        <div>
-          <p className="text-base font-semibold uppercase tracking-[0.18em] text-emerald-200">
-            Today
-          </p>
-          <p className="mt-2 text-3xl font-medium text-neutral-100 sm:text-5xl">
-            {formatted.date}
-          </p>
-        </div>
+    <div className="rounded-lg border border-white/10 bg-emerald-950/50 px-4 py-3 shadow-2xl shadow-black/25 sm:px-6">
+      <div className="flex flex-col justify-between gap-2 md:flex-row md:items-center">
+        <p className="text-xl font-medium text-neutral-100 sm:text-2xl lg:text-3xl">
+          {formatted.date}
+        </p>
         <time
-          className="text-6xl font-bold tabular-nums leading-none text-white sm:text-8xl lg:text-9xl"
+          className="text-3xl font-bold tabular-nums leading-none text-white sm:text-4xl lg:text-5xl"
           dateTime={now?.toISOString()}
         >
           {formatted.time}

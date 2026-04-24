@@ -1,22 +1,26 @@
 import CalendarWidget from "@/components/CalendarWidget";
+import CatWidget from "@/components/CatWidget";
 import ClockWidget from "@/components/ClockWidget";
 import TransportWidget from "@/components/TransportWidget";
 import WeatherWidget from "@/components/WeatherWidget";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-neutral-950 px-5 py-5 text-neutral-50 sm:px-8 sm:py-8">
-      <div className="mx-auto grid min-h-[calc(100vh-2.5rem)] max-w-[1800px] grid-cols-1 gap-5 lg:min-h-[calc(100vh-4rem)] lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-6">
+    <main className="min-h-screen bg-neutral-950 px-4 py-4 text-neutral-50 sm:px-6 sm:py-6">
+      <div className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-[1800px] grid-cols-1 gap-4 lg:min-h-[calc(100vh-3rem)] lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-5">
         <section className="lg:col-span-12">
           <ClockWidget />
         </section>
 
-        <section className="grid gap-5 lg:col-span-7 lg:gap-6">
-          <TransportWidget />
+        <section className="lg:col-span-4">
           <CalendarWidget />
         </section>
 
-        <section className="lg:col-span-5">
+        <section className="grid gap-4 lg:col-span-8 lg:gap-5">
+          <div className="grid gap-4 xl:grid-cols-2 xl:gap-5">
+            <TransportWidget />
+            <CatWidget />
+          </div>
           <WeatherWidget />
         </section>
       </div>

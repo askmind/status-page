@@ -38,31 +38,33 @@ export default function TransportWidget() {
     return () => window.clearInterval(timer);
   }, []);
 
+  const departures = (data?.departures ?? []).slice(0, 6);
+
   return (
-    <DashboardCard title="Departures" eyebrow="Public transport">
+    <DashboardCard title="Departures" eyebrow="Public transport" hideHeader>
       {error ? <p className="text-xl text-red-200">{error}</p> : null}
-      <div className="space-y-4">
-        {(data?.departures ?? []).map((departure) => (
+      <div className="space-y-1.5">
+        {departures.map((departure) => (
           <div
             key={departure.id}
-            className="grid grid-cols-[5rem_1fr_auto] items-center gap-4 rounded-md bg-white/[0.07] px-4 py-4"
+            className="grid grid-cols-[3rem_1fr_auto] items-center gap-2 rounded-md bg-white/[0.07] px-2 py-1.5"
           >
-            <div className="rounded-md bg-amber-300 px-3 py-2 text-center text-2xl font-black text-neutral-950">
+            <div className="rounded-md bg-amber-300 px-1.5 py-1 text-center text-sm font-black text-neutral-950">
               {departure.line}
             </div>
             <div className="min-w-0">
-              <p className="truncate text-2xl font-semibold text-white">
+              <p className="truncate text-sm font-semibold leading-tight text-white">
                 {departure.destination}
               </p>
-              <p className="mt-1 text-lg text-neutral-300">
-                {departure.platform} · {departure.status}
+              <p className="mt-0.5 truncate text-xs text-neutral-300">
+                {departure.platform} | {departure.status}
               </p>
             </div>
             <div className="text-right">
-              <p className="text-4xl font-bold tabular-nums text-white">
+              <p className="text-xl font-bold leading-none tabular-nums text-white">
                 {departure.minutesUntilDeparture}
               </p>
-              <p className="text-sm uppercase tracking-[0.16em] text-neutral-300">
+              <p className="text-xs uppercase tracking-[0.16em] text-neutral-300">
                 min
               </p>
             </div>
@@ -70,7 +72,7 @@ export default function TransportWidget() {
         ))}
       </div>
       {data ? (
-        <p className="mt-5 text-sm text-neutral-400">
+        <p className="mt-2 text-xs text-neutral-400">
           Updated {new Date(data.updatedAt).toLocaleTimeString()}
         </p>
       ) : null}
