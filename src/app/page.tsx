@@ -1,8 +1,8 @@
-import NewsFeedWidget from "@/components/NewsFeedWidget";
 import CatWidget from "@/components/CatWidget";
 import ClockWidget from "@/components/ClockWidget";
+import NewsWeatherWidget from "@/components/NewsWeatherWidget";
 import TransportWidget from "@/components/TransportWidget";
-import WeatherWidget from "@/components/WeatherWidget";
+import WorkoutLeaderboardCard from "@/components/WorkoutLeaderboardCard";
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
         </section>
 
         <section className="lg:col-span-4">
-          <NewsFeedWidget />
+          <NewsWeatherWidget />
         </section>
 
         <section className="grid gap-4 lg:col-span-8 lg:gap-5">
@@ -21,7 +21,7 @@ export default function Home() {
             <TransportWidget />
             <CatWidget />
           </div>
-          <WeatherWidget />
+          <WorkoutLeaderboardCard />
         </section>
       </div>
     </main>

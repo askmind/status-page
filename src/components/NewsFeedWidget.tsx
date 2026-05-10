@@ -11,7 +11,7 @@ function formatTime(iso: string) {
   return date.toLocaleString("nb-NO", { hour12: false, day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
 }
 
-export default function NewsFeedWidget() {
+export function NewsFeedContent() {
   const [data, setData] = useState<NewsResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ export default function NewsFeedWidget() {
   const items = useMemo(() => data?.items.slice(0, 25) ?? [], [data]);
 
   return (
-    <DashboardCard title="News Feed" eyebrow="Norwegian + Global">
+    <>
       {loading ? <p className="text-sm text-neutral-400">Loading live news…</p> : null}
       {error ? <p className="text-sm text-red-300">{error}</p> : null}
       {!loading && !error && items.length === 0 ? <p className="text-sm text-neutral-400">No articles available right now.</p> : null}
@@ -53,6 +53,14 @@ export default function NewsFeedWidget() {
         ))}
       </div>
       {data?.errors?.length ? <p className="mt-3 text-xs text-amber-300">Some sources failed: {data.errors.join(", ")}</p> : null}
+    </>
+  );
+}
+
+export default function NewsFeedWidget() {
+  return (
+    <DashboardCard title="News Feed" eyebrow="Norwegian + Global">
+      <NewsFeedContent />
     </DashboardCard>
   );
 }
