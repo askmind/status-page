@@ -1,4 +1,4 @@
-import CalendarWidget from "@/components/CalendarWidget";
+import NewsFeedWidget from "@/components/NewsFeedWidget";
 import CatWidget from "@/components/CatWidget";
 import ClockWidget from "@/components/ClockWidget";
 import TransportWidget from "@/components/TransportWidget";
@@ -13,7 +13,7 @@ export default function Home() {
         </section>
 
         <section className="lg:col-span-4">
-          <CalendarWidget />
+          <NewsFeedWidget />
         </section>
 
         <section className="grid gap-4 lg:col-span-8 lg:gap-5">

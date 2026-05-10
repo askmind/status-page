@@ -6,14 +6,3 @@ export type TransportDeparture = {
   minutesUntilDeparture: number;
   status: string;
 };
-
-export type CalendarEvent = {
-  id: string;
-  title: string;
-  start: string;
-  end: string;
-  allDay: boolean;
-  calendarId?: string;
-  calendarName?: string;
-  calendarColor?: string;
-};
