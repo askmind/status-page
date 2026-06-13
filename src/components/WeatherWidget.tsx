@@ -18,10 +18,10 @@ export function WeatherContent() {
   const meteogramUrl = `${METEOGRAM_URL}&refresh=${refreshKey}`;
 
   return (
-    <div className="flex h-full min-h-[34rem] items-center overflow-hidden rounded-md bg-black/30 p-2">
+    <div className="flex h-full min-h-[20rem] items-center overflow-hidden rounded-md bg-black/30 p-2 lg:min-h-0">
       <object
         aria-label="Weather forecast meteogram from Yr"
-        className="h-full min-h-[34rem] w-full"
+        className="h-full w-full"
         data={meteogramUrl}
         type="image/svg+xml"
       />

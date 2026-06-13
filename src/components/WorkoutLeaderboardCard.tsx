@@ -21,7 +21,7 @@ function getErrorMessage(payload: WorkoutLeaderboardResponse | LeaderboardErrorR
     : "Could not load workout leaderboard.";
 }
 
-export default function WorkoutLeaderboardCard() {
+export function WorkoutLeaderboardContent() {
   const [data, setData] = useState<WorkoutLeaderboardResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -32,9 +32,21 @@ export default function WorkoutLeaderboardCard() {
         const response = await fetch("/api/workouts/leaderboard", {
           cache: "no-store",
         });
-        const json = (await response.json()) as
-          | WorkoutLeaderboardResponse
-          | LeaderboardErrorResponse;
+
+        // The dev server can briefly return an HTML error/recompile page
+        // instead of JSON. Read as text and parse defensively so a non-JSON
+        // body surfaces a readable message instead of "Unexpected token '<'".
+        const rawBody = await response.text();
+        let json: WorkoutLeaderboardResponse | LeaderboardErrorResponse;
+        try {
+          json = JSON.parse(rawBody) as
+            | WorkoutLeaderboardResponse
+            | LeaderboardErrorResponse;
+        } catch {
+          throw new Error(
+            `Could not load workout leaderboard (HTTP ${response.status}).`,
+          );
+        }
 
         if (!response.ok) {
           throw new Error(getErrorMessage(json));
@@ -61,11 +73,7 @@ export default function WorkoutLeaderboardCard() {
   const leaderboard = data?.leaderboard ?? [];
 
   return (
-    <DashboardCard
-      title="Workout Leaderboard"
-      eyebrow="This week"
-      className="h-full"
-    >
+    <>
       {loading ? (
         <p className="text-sm text-neutral-400">Loading workouts...</p>
       ) : null}
@@ -130,6 +138,18 @@ export default function WorkoutLeaderboardCard() {
           {data.warnings.slice(0, 2).join(" ")}
         </p>
       ) : null}
+    </>
+  );
+}
+
+export default function WorkoutLeaderboardCard() {
+  return (
+    <DashboardCard
+      title="Workout Leaderboard"
+      eyebrow="This week"
+      className="h-full"
+    >
+      <WorkoutLeaderboardContent />
     </DashboardCard>
   );
 }

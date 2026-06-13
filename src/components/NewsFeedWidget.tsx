@@ -59,8 +59,14 @@ export function NewsFeedContent() {
 
 export default function NewsFeedWidget() {
   return (
-    <DashboardCard title="News Feed" eyebrow="Norwegian + Global">
-      <NewsFeedContent />
+    <DashboardCard
+      title="News Feed"
+      eyebrow="Norwegian + Global"
+      className="flex h-full flex-col"
+    >
+      <div className="min-h-0 flex-1 overflow-y-auto pr-1">
+        <NewsFeedContent />
+      </div>
     </DashboardCard>
   );
 }
